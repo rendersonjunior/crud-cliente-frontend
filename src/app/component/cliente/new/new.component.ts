@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/model/cliente/cliente.model';
+import { Telefone } from 'src/app/model/telefone/telefone.model';
+import { ClienteService } from 'src/app/service/cliente/cliente.service';
 
 @Component({
   selector: 'app-new',
@@ -7,9 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewComponent implements OnInit {
 
-  constructor() { }
+  cliente: Cliente = {
+    nome: '',
+    cpf: '',
+    endereco: '',
+    bairro: '',
+    telefones: []
+  }
+  submitted = false;
+
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+  }
+
+  submit(): void {
+    const data = {
+      nome: this.cliente.nome,
+      cpf: this.cliente.cpf,
+      endereco: this.cliente.endereco,
+      bairro: this.cliente.bairro,
+      telefones: this.cliente.telefones
+    }
+
+    this.clienteService.create(data).subscribe(
+      response => {
+        this.submitted = true;
+        alert("Cliente salvo com sucesso!")
+      },
+      error => {
+        alert("Erro ao salvar!")
+      });
+  }
+
+  clear(): void {
+    this.cliente = {
+      nome: '',
+      cpf: '',
+      endereco: '',
+      bairro: '',
+      telefones: []
+    }
+    this.submitted = false;    
   }
 
 }
