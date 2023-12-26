@@ -1,1 +1,52 @@
-<p>details works!</p>
+<div>
+    <div *ngIf="clienteSelecionado.id" class="edit-form">
+      <h4>Editar Cliente</h4>
+      <form>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            [(ngModel)]="clienteSelecionado.nome"
+            name="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cpf"
+            [(ngModel)]="clienteSelecionado.cpf"
+            name="cpf"
+          />
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input
+              type="text"
+              class="form-control"
+              id="endereco"
+              [(ngModel)]="clienteSelecionado.endereco"
+              name="endereco"
+            />
+        </div>
+        <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input
+              type="text"
+              class="form-control"
+              id="bairro"
+              [(ngModel)]="clienteSelecionado.bairro"
+              name="bairro"
+            />
+        </div>
+      </form>
+    </div>
+  
+    <div *ngIf="!clienteSelecionado.id">
+      <br />
+      <p>Não é possível selecionar esse cliente...</p>
+    </div>
+  </div>

@@ -2,7 +2,7 @@
     <div class="submit-form">
       <div *ngIf="!submitted">
         <div class="form-group">
-          <label for="title">Nome</label>
+          <label for="nome">Nome</label>
           <input
             type="text"
             class="form-control"
@@ -14,7 +14,7 @@
         </div>
   
         <div class="form-group">
-            <label for="title">CPF</label>
+            <label for="cpf">CPF</label>
             <input
               type="text"
               class="form-control"
@@ -26,7 +26,7 @@
         </div>
   
         <div class="form-group">
-            <label for="title">Endereço</label>
+            <label for="endereco">Endereço</label>
             <input
               type="text"
               class="form-control"
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group">
-            <label for="title">Bairro</label>
+            <label for="endereco">Bairro</label>
             <input
               type="text"
               class="form-control"
@@ -49,6 +49,15 @@
             />
         </div>
 
+        <div>
+          <label for="telefone">Telefone</label>
+          <input type="text" id="telefone" [(ngModel)]="telefone.numero" />
+          <button (click)="inserirTelefone()">Adicionar</button>
+        </div>
+        
+        <ul>
+          <li *ngFor="let tel of cliente.telefones">{{ tel.numero }}</li>
+        </ul>
 
         <button (click)="submit()" class="btn btn-success">Salvar</button>
       </div>

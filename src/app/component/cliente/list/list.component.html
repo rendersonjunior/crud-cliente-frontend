@@ -1,1 +1,66 @@
-<p>list works!</p>
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar por nome"
+          [(ngModel)]="nome"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="buscarPorNome()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Lista de Clientes</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let cli of clientes; let i = index"
+          [class.active]="i == indexSelecionado"
+          (click)="selecionarCliente(cli, i)"
+        >
+          {{ cli.nome }}
+        </li>
+      </ul>
+  
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="clienteSelecionado.id">
+        <h4>Cliente</h4>
+        <div>
+          <label><strong>Nome:</strong></label> {{ clienteSelecionado.nome }}
+        </div>
+        <div>
+          <label><strong>CPF:</strong></label> {{ clienteSelecionado.cpf }}
+        </div>
+        <div>
+          <label><strong>Endereço:</strong></label> {{ clienteSelecionado.endereco }}
+        </div>
+        <div>
+            <label><strong>Bairro:</strong></label> {{ clienteSelecionado.bairro }}
+        </div>
+        <div *ngIf="clienteSelecionado.telefones && clienteSelecionado.telefones.length > 0">
+            <label><strong>Telefones:</strong></label>
+            <ul>
+                <li *ngFor="let telefone of clienteSelecionado.telefones">
+                {{ telefone.numero }}
+                </li>
+            </ul>
+        </div>
+        <!--<a class="badge badge-warning" routerLink="/cliente/{{ clienteSelecionado.id }}">Detalhes</a>-->
+      </div>
+  
+      <div *ngIf="!clienteSelecionado">
+        <br />
+        <p>Por favor, selecione um cliente...</p>
+      </div>
+    </div>
+  </div>

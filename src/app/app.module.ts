@@ -7,7 +7,7 @@ import { NewComponent } from './component/cliente/new/new.component';
 import { DetailsComponent } from './component/cliente/details/details.component';
 import { ListComponent } from './component/cliente/list/list.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,9 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    FormBuilder 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
